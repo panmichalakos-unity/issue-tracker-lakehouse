@@ -1,0 +1,24 @@
+name: issue_tracker
+version: "1.0.0"
+config-version: 2
+profile: issue_tracker
+
+model-paths: ["models"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  as_of_date: "2024-06-15"
+  stale_after_days: 14
+  ops_group: "ops"
+
+models:
+  issue_tracker:
+    +materialized: table
+    staging:
+      +schema: staging
+    intermediate:
+      +schema: intermediate
+    marts:
+      +schema: marts

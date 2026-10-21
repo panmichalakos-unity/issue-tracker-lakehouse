@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: fct_issues
+    description: One row per issue after merge-on-id ingest.
+    columns:
+      - name: issue_id
+        tests:
+          - unique
+          - not_null
+      - name: issue_key
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_sprint_issues
+    description: Issues that belong to a sprint.
+    columns:
+      - name: issue_id
+        tests:
+          - not_null
+
+  - name: fct_comment_with_group_at_time
+    description: >
+      Comment grain with point-in-time ops-group membership from SCD2.
+      Alice's February comment is in ops; her April comment is not.
+    columns:
+      - name: comment_id
+        tests:
+          - unique
+          - not_null
+      - name: in_ops_at_comment
+        tests:
+          - not_null
+
+  - name: fct_epic_health_violations
+    description: Normalized epic hygiene rules. One row per violation_key.
+    columns:
+      - name: violation_key
+        tests:
+          - unique
+          - not_null
+      - name: severity
+        tests:
+          - accepted_values:
+              arguments:
+                values: ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+
+  - name: int_group_membership_scd2
+    description: Snapshot diffs as validity windows.
+    columns:
+      - name: account_id
+        tests:
+          - not_null

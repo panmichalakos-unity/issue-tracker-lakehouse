@@ -1,0 +1,6 @@
+[
+  {"snapshot_date": "2024-01-01", "group_name": "ops", "account_id": "alice", "display_name": "Alice"},
+  {"snapshot_date": "2024-01-01", "group_name": "ops", "account_id": "bob", "display_name": "Bob"},
+  {"snapshot_date": "2024-03-01", "group_name": "ops", "account_id": "bob", "display_name": "Bob"},
+  {"snapshot_date": "2024-03-01", "group_name": "ops", "account_id": "carol", "display_name": "Carol"}
+]
